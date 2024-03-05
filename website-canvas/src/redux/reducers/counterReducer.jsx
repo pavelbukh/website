@@ -1,13 +1,11 @@
-const initialState = {value: 0}
+import { createReducer } from "@reduxjs/toolkit";
+import { increment, decrement } from "../actions/counterAction";
 
-function counterReducer(state = initialState, action){
-  if (action.type === 'counter/increment'){
-    return {
-      ...state,
-      value: state.value + 1
-    }
-  }
-  return state
-}
+const initialState = 0
+const counterReducer = createReducer(initialState, (builder)=>{
+  builder
+    .addCase(increment, (state)=> state+1)
+    .addCase(decrement, (state)=> state-1)
+})
 
 export default counterReducer
